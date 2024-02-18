@@ -1,0 +1,106 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Registration Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://www.uti.eu.com/wp-content/uploads/law-enforcement-record-management-00.jpg') center/cover no-repeat;
+        }
+
+        .register-container {
+            background: rgba(10, 28, 49, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+            color: #fff;
+            animation: float 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(5px);
+            }
+            to {
+                transform: translateY(-5px);
+            }
+        }
+
+        .register-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            outline: none;
+        }
+
+        .register-container input:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .register-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .register-container button:hover {
+            background-color: #297fb8;
+        }
+
+        .register-container a {
+            color: #bbb;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .register-container a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form>
+            <input type="text" placeholder="Username" required>
+            <input type="email" placeholder="Email" required>
+            <div class="password-toggle">
+                <input type="password" placeholder="Password" required>
+                <span class="toggle-icon">&#x1f441;</span>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        const passwordInput = document.querySelector('input[type="password"]');
+        const toggleIcon = document.querySelector('.toggle-icon');
+
+        toggleIcon.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            toggleIcon.textContent = type === 'password' ? '\uD83D\uDD41' : '\uD83D\uDD13';
+        });
+    </script>
+</body>
+</html>

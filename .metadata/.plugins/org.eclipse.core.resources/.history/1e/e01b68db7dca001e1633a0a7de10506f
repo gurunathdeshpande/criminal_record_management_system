@@ -1,0 +1,63 @@
+package com.criminal_record_management.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.criminal_record_management.entities.Users;
+import com.criminal_record_management.helper.ConnectionProvider;
+import com.criminal_record_management.dao.UserDao;
+
+public class RegisterServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        String name = request.getParameter("txtname");
+        String email = request.getParameter("txtemail");
+        String password = request.getParameter("txtpassword");
+        String gender = request.getParameter("gender");
+        String dob = request.getParameter("txtdate");
+
+        // Sending this data to the database
+        Users user = new Users(name, email, password, gender, dob);
+        UserDao userDao = new UserDao(ConnectionProvider.getConnection());
+
+        Connection connection = null;
+        try {
+            connection = ConnectionProvider.getConnection();
+            userDao.saveUser(user); // Insert user into the database
+            connection.commit(); // Commit the transaction
+            out.println("Data Inserted Successfully !");
+        } catch (SQLException e) {
+            // Rollback the transaction in case of any exception
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            out.println("Error: Failed to insert data into the database.");
+            e.printStackTrace();
+        } finally {
+            // Close the database connection
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Set content type
+        response.setContentType("text/html");
+    }
+}

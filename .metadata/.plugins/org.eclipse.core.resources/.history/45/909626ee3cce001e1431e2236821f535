@@ -1,0 +1,182 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="com.criminal_record_management.helper.ConnectionProvider" %>
+<%@ page import="com.criminal_record_management.entities.Message" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Records Management System</title>
+    <!-- Add the link to crimes.css here -->
+    <link rel="stylesheet" href="css/crimes.css">
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #crimes-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-family: "Arial Black", sans-serif;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-btn:hover {
+            background-color: #218838;
+        }
+
+        .edit-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .edit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }   
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <% Message m1 = (Message) session.getAttribute("msg");
+       if(m1 != null) { %>
+           <div class="alert alert-success" role="alert">
+               <%= m1.getContent() %>
+           </div>
+           <% session.removeAttribute("msg"); %>
+    <% } %>
+    
+    
+    <section id="crimes-section">
+        <h2>Manage Crimes</h2>
+        <div class="table-container">
+            <table class="crime-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Date of Crime</th>
+                        <th>Location</th>
+                        <th>Type of Crime</th>
+                        <th>Description</th>
+                        <th>People Involved</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% 
+                        Connection con = null;
+                        Statement stmt = null;
+                        ResultSet rs = null;
+                        try {
+                            con = ConnectionProvider.getConnection();
+                            stmt = con.createStatement();
+                            String query = "SELECT * FROM crimes";
+                            rs = stmt.executeQuery(query);
+                            int count =1;
+                            while (rs.next()) {
+                    %>
+                                <tr>
+                                    <td><% =count++ %></td>
+                                    <td><%= rs.getString("date_of_crime") %></td>
+                                    <td><%= rs.getString("location") %></td>
+                                    <td><%= rs.getString("crime_type") %></td>
+                                    <td><%= rs.getString("description") %></td>
+                                    <td><%= rs.getString("people_involved") %></td>
+                                    <td><%= rs.getString("status") %></td>
+                                    <td>
+                                        <button class="btn edit-btn"><a href="edit_crimes.jsp?crimeid=<%= rs.getInt("crimeId") %>">Edit</a></button>
+                                        <button class="btn delete-btn"><a href="delete?crimeid=<%= rs.getString("crimeId") %>">Delete</a></button>
+                                    </td>
+                                </tr>
+                    <% 
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            // Close resources in finally block
+                            try {
+                                if (rs != null) rs.close();
+                                if (stmt != null) stmt.close();
+                                if (con != null) con.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+        <button class="btn add-btn" onclick="redirectToEdit('add')">Add Crime</button>
+    </section>
+    <script>
+        // Function to redirect to edit_crimes.html or add_crimes.html based on action
+        function redirectToEdit(action) {
+            if (action === 'edit') {
+                window.location.href = "edit_crimes.jsp";
+            } else if (action === 'add') {
+                window.location.href = "add_crime.jsp";
+            }
+        }
+        
+    </script>
+</body>
+</html>

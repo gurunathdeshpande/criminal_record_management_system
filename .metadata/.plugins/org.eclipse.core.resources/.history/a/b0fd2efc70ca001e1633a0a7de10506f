@@ -1,0 +1,27 @@
+package com.criminal_record_management.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import com.criminal_record_management.entities.Users;
+
+
+public class userDao {
+	private Connection con;
+
+	public userDao(Connection con) {
+		super();
+		this.con = con;
+	}
+	
+	//create method to insert data into database
+	public void saveUser(Users user){
+		try {
+			String query ="insert into users(username,useremail,password,gender,dob) values(?,?,?,?,?,?)";
+			PreparedStatement psmt = con.prepareStatement(query);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

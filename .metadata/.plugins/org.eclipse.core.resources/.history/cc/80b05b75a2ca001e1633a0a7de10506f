@@ -1,0 +1,43 @@
+package com.criminal_record_management.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.criminal_record_management.dao.userDao;
+import com.criminal_record_management.helper.ConnectionProvider;
+import com.criminal_record_management.entities.Users;
+import javax.servlet.http.HttpSession;
+
+public class LoginServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        PrintWriter out = res.getWriter();
+        res.setContentType("text/html");
+
+        String Email = req.getParameter("txtemail");
+        String Pass = req.getParameter("txtpassword");
+
+        userDao ud = new userDao(ConnectionProvider.getConnection());
+        Users user = ud.getUserByEmailPass(Email, Pass);
+
+        if (user == null) {
+            // Display message on the same page
+            req.setAttribute("errorMessage", "User Not Found !!");
+            req.getRequestDispatcher("login.jsp").forward(req, res);
+        } else {
+            // Set session attribute to handle user not found message after successful login
+            HttpSession session = req.getSession();
+            session.setAttribute("userNotFoundMessage", "User Not Found !!");
+
+            // Redirect to index.jsp upon successful login
+            res.sendRedirect("index.jsp");
+        }
+
+        out.println(Email);
+        out.println(Pass);
+    }
+}

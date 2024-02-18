@@ -1,0 +1,36 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="com.criminal_record_management.dao.CrimeDAO" %>
+<%@ page import="com.criminal_record_management.helper.ConnectionProvider" %>
+<%@ page import="com.criminal_record_management.entities.Crime" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<% 
+    String crimeIdParam = request.getParameter("crimeid");
+    int id = 0;
+    if (crimeIdParam != null && !crimeIdParam.isEmpty()) {
+        id = Integer.parseInt(crimeIdParam);
+    }
+%>
+<p>Editable crime is : <%= id %></p>
+<% 
+    if (id != 0) {
+        CrimeDAO cdao = new CrimeDAO(ConnectionProvider.getConnection());
+        Crime crm = cdao.getCrimeById(id);
+%>
+   crime location is : <%= crm.getLocation() %>
+<%
+    } else {
+%>
+   <p>No crime ID provided.</p>
+<%
+    }
+%>
+</body>
+</html>

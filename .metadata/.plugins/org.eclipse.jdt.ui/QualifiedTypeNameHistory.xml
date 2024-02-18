@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="com.criminal_record_management.entities.Users"/>
+    <fullyQualifiedTypeName name="com.criminal_record_management.dao.userDao"/>
+    <fullyQualifiedTypeName name="javax.servlet.HttpConstraintElement"/>
+    <fullyQualifiedTypeName name="com.criminal_record_management.entities.Message"/>
+    <fullyQualifiedTypeName name="com.criminal_record_management.entities.Crime"/>
+    <fullyQualifiedTypeName name="com.criminal_record_management.helper.ConnectionProvider"/>
+</qualifiedTypeNameHistroy>

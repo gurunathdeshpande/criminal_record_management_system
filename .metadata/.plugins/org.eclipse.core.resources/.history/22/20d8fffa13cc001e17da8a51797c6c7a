@@ -1,0 +1,27 @@
+package com.criminal_record_management.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class CrimeDAO {
+    private Connection con;
+    
+    public CrimeDAO(Connection con) {
+        this.con = con;
+    }
+
+    public void addCrimeDetails(String date, String location, String crimeType, String description, String peopleInvolved, String status) throws SQLException {
+        String query = "INSERT INTO crimes (date_of_crime, location, crime_type, description, people_involved, status) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setString(1, date);
+            pstmt.setString(2, location);
+            pstmt.setString(3, crimeType);
+            pstmt.setString(4, description);
+            pstmt.setString(5, peopleInvolved);
+            pstmt.setString(6, status);
+
+            pstmt.executeUpdate();
+        }
+    }
+}

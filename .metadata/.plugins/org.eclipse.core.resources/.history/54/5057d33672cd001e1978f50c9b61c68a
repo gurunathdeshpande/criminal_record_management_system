@@ -1,0 +1,5 @@
+package com.criminal_record_management.servlets;
+
+public class FIRServlet {
+
+}

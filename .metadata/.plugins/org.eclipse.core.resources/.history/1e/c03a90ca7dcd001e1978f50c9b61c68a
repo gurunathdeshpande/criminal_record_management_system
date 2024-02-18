@@ -1,0 +1,93 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD FIR</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for form */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+        .form-control {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Add FIR Details</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="complainant_name">Complainant's Name:</label>
+                    <input type="text" class="form-control" id="complainant_name" name="complainant_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_info">Contact Information:</label>
+                    <input type="text" class="form-control" id="contact_info" name="contact_info" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="incident_date">Incident Date:</label>
+                    <input type="date" class="form-control" id="incident_date" name="incident_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="incident_time">Incident Time:</label>
+                    <input type="time" class="form-control" id="incident_time" name="incident_time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" class="form-control" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="incident_description">Incident Description:</label>
+                    <textarea class="form-control" id="incident_description" name="incident_description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="accused_details">Details of Accused (if known):</label>
+                    <textarea class="form-control" id="accused_details" name="accused_details" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-submit">Submit FIR</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

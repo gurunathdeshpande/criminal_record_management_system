@@ -1,0 +1,25 @@
+package com.criminal_record_management.servlets;
+
+import java.io.IOException;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServlet;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.criminal_record_management.dao.CrimeDAO;
+
+import com.criminal_record_management.helper.ConnectionProvider;
+
+public class DeleteCrimeServlet extends HttpServlet{
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		PrintWriter out = res.getWriter();
+	    res.setContentType("text/html");
+	    String delId= req.getParameter("crimeid");
+	    CrimeDAO ed = new CrimeDAO(ConnectionProvider.getConnection());
+	    ed.deleteCrime(delId);
+	}
+}

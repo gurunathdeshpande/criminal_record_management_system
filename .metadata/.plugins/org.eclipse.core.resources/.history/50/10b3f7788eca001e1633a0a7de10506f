@@ -1,0 +1,24 @@
+package com.criminal_record_management.servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class LoginServlet extends HttpServlet{
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
+		PrintWriter out = res.getWriter();
+		res.setContentType("test/html");
+		
+		String Email = req.getParameter("txtemail");
+		String Pass = req.getParameter("txtpassword");
+		
+		out.println(Email);
+		out.println(Pass);
+		
+	}
+
+}
