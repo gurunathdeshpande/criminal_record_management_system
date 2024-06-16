@@ -62,7 +62,7 @@
         </div>
 
         <section class="banner">
-            <h1>Welcome to the Crime Records Management System</h1>
+            <marquee><h1>Welcome to the Crime Records Management System</h1></marquee>
             <p>Keep track of crimes, FIRs, criminals, and complaints.</p>
             <a href="#" class="btn">Get Started</a>
         </section>

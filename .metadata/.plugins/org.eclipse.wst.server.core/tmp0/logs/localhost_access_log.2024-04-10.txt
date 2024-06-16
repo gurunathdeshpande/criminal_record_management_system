@@ -1,0 +1,14 @@
+127.0.0.1 - - [10/Apr/2024:10:08:48 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:08:52 +0530] "GET /criminal/login.jsp HTTP/1.1" 200 3814
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:08:53 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:02 +0530] "POST /criminal/login HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:02 +0530] "GET /criminal/index.jsp HTTP/1.1" 200 5602
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:03 +0530] "GET /criminal/css/index.css HTTP/1.1" 200 1223
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:05 +0530] "GET /criminal/logout.jsp HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:05 +0530] "GET /criminal/login.jsp HTTP/1.1" 200 3932
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:14 +0530] "POST /criminal/login HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:14 +0530] "GET /criminal/login.jsp HTTP/1.1" 200 3931
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:18 +0530] "POST /criminal/login HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:18 +0530] "GET /criminal/index.jsp HTTP/1.1" 200 5602
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:35 +0530] "GET /criminal/crimes.jsp HTTP/1.1" 200 5143
+0:0:0:0:0:0:0:1 - - [10/Apr/2024:10:09:35 +0530] "GET /criminal/css/crimes.css HTTP/1.1" 304 -
